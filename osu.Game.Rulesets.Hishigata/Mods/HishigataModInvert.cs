@@ -12,7 +12,7 @@ namespace osu.Game.Rulesets.Hishigata.Mods
     {
         public override string Name => "Invert";
         public override string Acronym => "IN";
-        public override LocalisableString Description => HishigataModTrustworthyStrings.ModDescription;
+        public override LocalisableString Description => HishigataModInvertStrings.ModDescription;
         public override double ScoreMultiplier => 0.8;
         public override ModType Type => ModType.Conversion;
         public override IconUsage? Icon => OsuIcon.ModInvert;
