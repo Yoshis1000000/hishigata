@@ -1,9 +1,7 @@
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Localisation;
-using osu.Game.Beatmaps;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Hishigata.Localisation.Mods;
-using osu.Game.Rulesets.Hishigata.Beatmaps;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.Hishigata.Objects;
 
