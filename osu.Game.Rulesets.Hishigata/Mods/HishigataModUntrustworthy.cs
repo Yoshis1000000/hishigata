@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Hishigata.Mods
         public override double ScoreMultiplier => 0.8;
         public override ModType Type => ModType.Conversion;
         public override IconUsage? Icon => FontAwesome.Solid.Exclamation;
-        public override Type[] IncompatibleMods => new[] { typeof(HishigataModTrustworthy) };
+        public override Type[] IncompatibleMods => new[] { typeof(HishigataModTrustworthy), typeof(HishigataModInvert) };
 
         public void ApplyToHitObject(HitObject hitObject)
         {
