@@ -7,7 +7,7 @@ namespace osu.Game.Rulesets.Hishigata.Localisation.Mods
         private const string prefix = @"osu.Game.Rulesets.Hishigata.Resources.Localisation.Mods.HishigataModUntrustworthyStrings";
 
         /// <summary>
-        /// "Notes don't switch sides."
+        /// "All notes switch sides."
         /// </summary>
         public static LocalisableString ModDescription => new TranslatableString(getKey(@"mod_description"), @"All notes switch sides.");
 
