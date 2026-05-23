@@ -1,5 +1,6 @@
 using System;
 using osu.Framework.Allocation;
+using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Localisation;
@@ -11,6 +12,7 @@ using osu.Game.Rulesets.Hishigata.Objects;
 using osu.Game.Rulesets.Hishigata.Objects.Drawables;
 using osuTK;
 using osuTK.Graphics;
+using ManagedBass.Fx;
 
 namespace osu.Game.Rulesets.Hishigata.Mods
 {
@@ -32,7 +34,15 @@ namespace osu.Game.Rulesets.Hishigata.Mods
                 if (drawableHitObject is DrawableHishigataNote drawableHishigataNote)
                 {
                     HishigataNote hishigataNote = drawableHishigataNote.HitObject;
-                    drawableHishigataNote.Spin(hishigataNote.TimePreempt + (hishigataNote.IsFeign ? 200 : 0), RotationDirection.Clockwise);
+                    if (hishigataNote.IsFeign)
+                    {
+                        drawableHishigataNote.ClearTransforms();
+                        drawableHishigataNote.RotateTo(0).FadeColour(Color4Extensions.FromHex("ff0064")).Then().RotateTo(90, hishigataNote.TimePreempt * .5).Delay(hishigataNote.TimePreempt * .5).Then().RotateTo(270, 200).FadeColour(Color4.White, 200).Delay(200).Then().RotateTo(360, hishigataNote.TimePreempt * .5);
+                    }
+                    else
+                    {
+                        drawableHishigataNote.RotateTo(180).Then().RotateTo(360, hishigataNote.TimePreempt);
+                    }
                 }
             };
         }
