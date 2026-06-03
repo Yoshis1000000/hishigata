@@ -1,6 +1,7 @@
 ﻿using System;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Game.Rulesets.Objects.Drawables;
@@ -12,7 +13,9 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
     public partial class DrawableHishigataHitObject : DrawableHitObject<HishigataHitObject>
     {
         protected override double InitialLifetimeOffset => HitObject.TimePreempt;
-        protected Sprite Note = null!;
+        //protected Sprite Note = null!;
+        public Container NoteContainer = null!;
+        public Sprite Note => (Sprite)NoteContainer.Child;
 
         public DrawableHishigataHitObject() : this(null)
         {
@@ -28,12 +31,17 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
         {
             Origin = Anchor.Centre;
             Anchor = Anchor.Centre;
-            AddInternal(Note = new Sprite
+            AddInternal(NoteContainer = new Container
             {
-                Position = new Vector2(0, -300),
-                Origin = Anchor.BottomCentre,
+                Origin = Anchor.Centre,
                 Anchor = Anchor.Centre,
-                Texture = textures.Get("chevron"),
+                Child = new Sprite
+                {
+                    Position = new Vector2(0, -300),
+                    Origin = Anchor.BottomCentre,
+                    Anchor = Anchor.Centre,
+                    Texture = textures.Get("chevron"),
+                }
             });
         }
 
@@ -54,7 +62,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected override void UpdateInitialTransforms()
         {
-            Note.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
+            NoteContainer.Child.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
         }
 
         protected override void UpdateHitStateTransforms(ArmedState state)
@@ -64,12 +72,12 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             switch (state)
             {
                 case ArmedState.Hit:
-                    Note.ScaleTo(0, animationDuration);
+                    NoteContainer.Child.ScaleTo(0, animationDuration);
                     this.Delay(animationDuration).Expire();
                     break;
 
                 case ArmedState.Miss:
-                    Note.MoveToOffset(new Vector2(0, 80), animationDuration).FadeColour(Color4.Red, animationDuration).FadeOut(animationDuration);
+                    NoteContainer.Child.MoveToOffset(new Vector2(0, 80), animationDuration).FadeColour(Color4.Red, animationDuration).FadeOut(animationDuration);
                     this.Delay(150).Expire();
                     break;
             }

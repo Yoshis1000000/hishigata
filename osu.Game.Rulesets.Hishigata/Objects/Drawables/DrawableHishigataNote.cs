@@ -24,8 +24,8 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             LifetimeStart = HitObject.StartTime - InitialLifetimeOffset;
             if (HitObject.IsFeign)
             {
-                Note.MoveTo(new Vector2(0, -190), HitObject.TimePreempt * .5).Then().Delay(200).MoveTo(new Vector2(0, -80), HitObject.TimePreempt * .5);
-                this.RotateTo(180).FadeColour(Color4Extensions.FromHex("ff0064")).Delay(HitObject.TimePreempt * .5).Then().RotateTo(360, 200).FadeColour(Color4.White, 200);
+                NoteContainer.Child.MoveTo(new Vector2(0, -190), HitObject.TimePreempt * .5).Then().Delay(200).MoveTo(new Vector2(0, -80), HitObject.TimePreempt * .5);
+                NoteContainer.RotateTo(180).FadeColour(Color4Extensions.FromHex("ff0064")).Delay(HitObject.TimePreempt * .5).Then().RotateTo(360, 200).FadeColour(Color4.White, 200);
             }
             else
                 base.UpdateInitialTransforms();
