@@ -62,7 +62,7 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
 
         protected override void UpdateInitialTransforms()
         {
-            NoteContainer.Child.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
+            Note.MoveTo(new Vector2(0, -80), HitObject.TimePreempt);
         }
 
         protected override void UpdateHitStateTransforms(ArmedState state)
@@ -72,12 +72,12 @@ namespace osu.Game.Rulesets.Hishigata.Objects.Drawables
             switch (state)
             {
                 case ArmedState.Hit:
-                    NoteContainer.Child.ScaleTo(0, animationDuration);
+                    Note.ScaleTo(0, animationDuration);
                     this.Delay(animationDuration).Expire();
                     break;
 
                 case ArmedState.Miss:
-                    NoteContainer.Child.MoveToOffset(new Vector2(0, 80), animationDuration).FadeColour(Color4.Red, animationDuration).FadeOut(animationDuration);
+                    Note.MoveToOffset(new Vector2(0, 80), animationDuration).FadeColour(Color4.Red, animationDuration).FadeOut(animationDuration);
                     this.Delay(150).Expire();
                     break;
             }
